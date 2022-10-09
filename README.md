@@ -20,3 +20,25 @@ _Projet réalisé en duo avec Tanguy J._
 |<img src="https://nodejs.org/static/images/logo.svg" width="30" height="30" alt="NodeJS icon"> | [NodeJS](https://nodejs.org/) | 18.10 |
 |<img src="https://expressjs.com/images/favicon.png" width="30" height="30" alt="ExpressJS icon"> | [Express](https://expressjs.com/) | 4.18 |
 
+
+### Installation
+https://docs.docker.com/compose/install/
+1. Pré-requis :
+
+    | Dépendance    | Version min. | Lien |
+    |---------------|--------------|------|
+    | Docker        |       20.10  | [install](https://docs.docker.com/get-docker/) |
+	| Dockercompose |        1.25  | [install](https://docs.docker.com/compose/install/) |
+
+2. Installation
+
+    ```bash
+	cp .env.example .env
+	```
+	Puis adaptez le à votre environnement.
+
+3. Lancement
+
+    ```bash
+	docker-compose up -d --build
+	```
