@@ -1,0 +1,16 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+a {
+	text-decoration: none;
+	font-weight: bold;
+	background-color: #9fc1dd;
+	display: block;
+	color: black;
+	padding: .6rem 2rem;
+	margin: .5rem;
+}
