@@ -1,3 +1,15 @@
+nom_b = true;
+heuresHebdo_b = true;
+niv_b = true;
+instru_b = true;
+ville_b = true;
+styles_b = true;
+hMin_b = true;
+hMax_b = true;
+nivMin_b = true;
+nivMax_b = true;
+stylesMin_b = true;
+
 nbPersonnes = 12;
 
 nbHeuresHebdo = [3,3,2,3,5,3,3,3,2,2,3,3];

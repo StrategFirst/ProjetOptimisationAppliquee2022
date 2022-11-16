@@ -1,4 +1,3 @@
-
 document.getElementById('add').onclick = () => {
 	let tr = document.createElement('tr');
 	tr.innerHTML = `
@@ -50,26 +49,9 @@ document.getElementById('submit').onclick = () => {
 		names.push(Nom);
 	}
 
-	let constraints = [...document.querySelector('#in tfoot tr').children]
-	.map(th => {
-		let tab = [...th.querySelectorAll('input')].map(input => input.checked);
-		return tab;
-	});
 
 	let fichier =
 `
-nom_b = ${constraints[0]};
-heuresHebdo_b = ${constraints[1]};
-niv_b = ${constraints[2]};
-instru_b = ${constraints[3]};
-ville_b = ${constraints[4]};
-styles_b = ${constraints[5]};
-hMin_b = ${constraints[6]};
-hMax_b = ${constraints[7]};
-nivMin_b = ${constraints[8]};
-nivMax_b = ${constraints[9]};
-stylesMin_b = ${constraints[10]};
-
 nbPersonnes = ${result.nbPersonnes};
 
 nbHeuresHebdo = ${JSON.stringify(result.nbHeuresHebdo).replace(/"/g, '')};
@@ -86,7 +68,7 @@ villes = ${JSON.stringify(result.villes).replace(/"/g, '')};
 styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 `;
 
-	fetch('/api/duo', {
+	fetch('/api/trio', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -95,8 +77,8 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 			data: fichier
 		})
 	})
-		.then( res => res.json() )
-		.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
-		.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
-		.then( html => document.getElementById('out').innerHTML = html )
-}
+	.then( res => res.json() )
+	.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
+	.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
+	.then( html => document.getElementById('out').innerHTML = html )
+};

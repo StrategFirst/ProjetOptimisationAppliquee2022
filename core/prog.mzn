@@ -9,6 +9,18 @@ enum Style = { Rock , Metal , Jazz , Pop , Classique , Punk , RnB , Rap , Electr
 
  % Constantes
 
+bool: nom_b;
+bool: heuresHebdo_b;
+bool: niv_b;
+bool: instru_b;
+bool: ville_b;
+bool: styles_b;
+bool: hMin_b;
+bool: hMax_b;
+bool: nivMin_b;
+bool: nivMax_b;
+bool: stylesMin_b;
+
 int: nbPersonnes;
 
 array[1..nbPersonnes] of int: nbHeuresHebdo; 
