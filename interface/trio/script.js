@@ -49,9 +49,20 @@ document.getElementById('submit').onclick = () => {
 		names.push(Nom);
 	}
 
+	let constraints = [...document.querySelector('#constraints tbody').children]
+	.map(tr => {
+		let tab = [...tr.querySelectorAll('input')].map(input => input.checked);
+		return tab;
+	});
 
 	let fichier =
 `
+dropConstraintCity = ${constraints[0]};
+dropConstraintTime = ${constraints[1]};
+dropConstraintStyle = ${constraints[2]};
+dropConstraintInstru = ${constraints[3]};
+dropConstraintLevel = ${constraints[4]};
+
 nbPersonnes = ${result.nbPersonnes};
 
 nbHeuresHebdo = ${JSON.stringify(result.nbHeuresHebdo).replace(/"/g, '')};

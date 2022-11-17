@@ -20,6 +20,38 @@
 			<button id="submit"> Analyser </button>
 		</div>
 
+		<h3> Contraintes </h3>
+		<table id="constraints">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Activer</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td>Les deux musiciens doivent habiter la même ville</td>
+						<td><input type="checkbox" checked id="dropConstraintCity"></td>
+					</tr>
+					<tr>
+						<td>Le nombre d’heures voulues doit être dans le créneau Min - Max souhaité par l’autre</td>
+						<td><input type="checkbox" checked id="dropConstraintTime"></td>
+					</tr>
+					<tr>
+						<td>Le nombre de style commun doit respecter les exigences de chacun</td>
+						<td><input type="checkbox" checked id="dropConstraintStyle"></td>
+					</tr>
+					<tr>
+						<td>Deux musiciens jouant du même instrument ne peuvent former un duo</td>
+						<td><input type="checkbox" checked id="dropConstraintInstru"></td>
+					</tr>
+					<tr>
+						<td>Le niveau de chaque musicien du duo doit être dans l’intervalle de niveau accepté par l’autre musicien</td>
+						<td><input type="checkbox" checked id="dropConstraintLevel"></td>
+					</tr>	
+			</tbody>
+		</table>
+
 		<h3> Entrée </h3>
 		<table id="in">
 			<thead>
@@ -195,21 +227,6 @@
 					<td><input value="1" type="number"> </td>
 				</tr>
 			</tbody>
-			<tfoot>
-				<tr>
-					<th><input type="checkbox" checked id="nom"></th>
-					<th><input type="checkbox" checked id="heuresHebdo"></th>
-					<th><input type="checkbox" checked id="niv"></th>
-					<th><input type="checkbox" checked id="instru"></th>
-					<th><input type="checkbox" checked id="ville"></th>
-					<th><input type="checkbox" checked id="styles"></th>
-					<th><input type="checkbox" checked id="hMin"></th>
-					<th><input type="checkbox" checked id="hMax"></th>
-					<th><input type="checkbox" checked id="nivMin"></th>
-					<th><input type="checkbox" checked id="nivMax"></th>
-					<th><input type="checkbox" checked id="stylesMin"></th>
-				</tr>
-			</tfoot>
 		</table>
 
 		<h3> Sortie </h3>

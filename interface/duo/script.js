@@ -50,25 +50,19 @@ document.getElementById('submit').onclick = () => {
 		names.push(Nom);
 	}
 
-	let constraints = [...document.querySelector('#in tfoot tr').children]
-	.map(th => {
-		let tab = [...th.querySelectorAll('input')].map(input => input.checked);
+	let constraints = [...document.querySelector('#constraints tbody').children]
+	.map(tr => {
+		let tab = [...tr.querySelectorAll('input')].map(input => input.checked);
 		return tab;
 	});
 
 	let fichier =
 `
-nom_b = ${constraints[0]};
-heuresHebdo_b = ${constraints[1]};
-niv_b = ${constraints[2]};
-instru_b = ${constraints[3]};
-ville_b = ${constraints[4]};
-styles_b = ${constraints[5]};
-hMin_b = ${constraints[6]};
-hMax_b = ${constraints[7]};
-nivMin_b = ${constraints[8]};
-nivMax_b = ${constraints[9]};
-stylesMin_b = ${constraints[10]};
+dropConstraintCity = ${constraints[0]};
+dropConstraintTime = ${constraints[1]};
+dropConstraintStyle = ${constraints[2]};
+dropConstraintInstru = ${constraints[3]};
+dropConstraintLevel = ${constraints[4]};
 
 nbPersonnes = ${result.nbPersonnes};
 

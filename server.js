@@ -23,10 +23,23 @@ app.get('/api' , (req,res) => {
 app.post('/api/duo' , (req,res) => {
 	let query = req.body;
 	let now = `query/data_${+(new Date())}.dzn`;
-	console.log(query.data);
 
 	writeFileSync( now , query.data , {} )
 	exec( `minizinc --output-mode json core/prog.mzn ${now}` , ( err , stdout , stderr ) => {
+		if( err != null ) {
+			console.error( {err,stdout,stderr} );
+			return res.sendStatus(500);
+		}
+		res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
+	})
+})
+
+app.post('/api/trio' , (req,res) => {
+	let query = req.body;
+	let now = `query/data_${+(new Date())}.dzn`;
+
+	writeFileSync( now , query.data , {} )
+	exec( `minizinc --output-mode json core/prog_trio.mzn ${now}` , ( err , stdout , stderr ) => {
 		if( err != null ) {
 			console.error( {err,stdout,stderr} );
 			return res.sendStatus(500);

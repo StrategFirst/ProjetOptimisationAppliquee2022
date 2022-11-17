@@ -11,6 +11,6 @@ div button {
 #submit { background: blue;}
 
 
-input[type="number"], tfoot {
+input[type="number"] {
 	width: 5rem  ;
 }

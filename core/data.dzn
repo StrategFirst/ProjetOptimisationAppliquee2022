@@ -1,14 +1,8 @@
-nom_b = true;
-heuresHebdo_b = true;
-niv_b = true;
-instru_b = true;
-ville_b = true;
-styles_b = true;
-hMin_b = true;
-hMax_b = true;
-nivMin_b = true;
-nivMax_b = true;
-stylesMin_b = true;
+dropConstraintCity = true;
+dropConstraintTime = true;
+dropConstraintStyle = true;
+dropConstraintInstru = true;
+dropConstraintLevel = true;
 
 nbPersonnes = 12;
 
