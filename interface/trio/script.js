@@ -1,4 +1,3 @@
-
 document.getElementById('add').onclick = () => {
 	let tr = document.createElement('tr');
 	tr.innerHTML = `
@@ -80,7 +79,7 @@ villes = ${JSON.stringify(result.villes).replace(/"/g, '')};
 styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 `;
 
-	fetch('/api/duo', {
+	fetch('/api/trio', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -89,8 +88,8 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 			data: fichier
 		})
 	})
-		.then( res => res.json() )
-		.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
-		.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
-		.then( html => document.getElementById('out').innerHTML = html )
-}
+	.then( res => res.json() )
+	.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
+	.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
+	.then( html => document.getElementById('out').innerHTML = html )
+};

@@ -15,10 +15,9 @@
 	</head>
 
 	<body class="hero">
+		<a href="../index.html">Retour</a>
 		<h1> “We are m(usicians) and we play rock n’ roll !” </h1>
 		<h2> Duo </h2>
-
-		<h3> Entrée </h3>
 		
 		<div>
 			<button id="add" class="btn btn-success"> <i class="bi-plus-circle-fill"></i> </button>
@@ -26,6 +25,39 @@
 			<button id="submit" class="btn btn-primary"> Analyser </button>
 		</div>
 
+		<h3> Contraintes </h3>
+		<table id="constraints">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Activer</th>
+				</tr>
+			</thead>
+			<tbody>
+					<tr>
+						<td>Les deux musiciens doivent habiter la même ville</td>
+						<td><input type="checkbox" checked id="dropConstraintCity"></td>
+					</tr>
+					<tr>
+						<td>Le nombre d’heures voulues doit être dans le créneau Min - Max souhaité par l’autre</td>
+						<td><input type="checkbox" checked id="dropConstraintTime"></td>
+					</tr>
+					<tr>
+						<td>Le nombre de style commun doit respecter les exigences de chacun</td>
+						<td><input type="checkbox" checked id="dropConstraintStyle"></td>
+					</tr>
+					<tr>
+						<td>Deux musiciens jouant du même instrument ne peuvent former un duo</td>
+						<td><input type="checkbox" checked id="dropConstraintInstru"></td>
+					</tr>
+					<tr>
+						<td>Le niveau de chaque musicien du duo doit être dans l’intervalle de niveau accepté par l’autre musicien</td>
+						<td><input type="checkbox" checked id="dropConstraintLevel"></td>
+					</tr>	
+			</tbody>
+		</table>
+
+		<h3> Entrée </h3>
 		<table id="in">
 			<thead>
 				<tr>

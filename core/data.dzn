@@ -1,3 +1,9 @@
+dropConstraintCity = true;
+dropConstraintTime = true;
+dropConstraintStyle = true;
+dropConstraintInstru = true;
+dropConstraintLevel = true;
+
 nbPersonnes = 12;
 
 nbHeuresHebdo = [3,3,2,3,5,3,3,3,2,2,3,3];
