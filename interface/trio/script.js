@@ -1,25 +1,3 @@
-document.getElementById('add').onclick = () => {
-	let tr = document.createElement('tr');
-	tr.innerHTML = `
-					<td><input type="text"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="text"/> </td>
-					<td><input type="text"/> </td>
-					<td><input type="text"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="number"/> </td>
-					<td><input type="number"/> </td>`
-	document.querySelector('#in tbody').appendChild(tr);
-};
-
-document.getElementById('remove').onclick = () => {
-	let cible = document.querySelector('#in tbody');
-	let rm = cible.lastElementChild;
-	if (rm) { cible.removeChild(rm) }
-};
 
 document.getElementById('submit').onclick = () => {
 	let listeDonnees = [...document.querySelector('#in tbody').children]
@@ -88,8 +66,10 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 			data: fichier
 		})
 	})
+	.then( res => { if (res.status != 200) { throw res; } else { return res; } } )
 	.then( res => res.json() )
 	.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
 	.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
 	.then( html => document.getElementById('out').innerHTML = html )
+	.catch( () => alert('Une erreur est survenu \n pensez à vérifier vos données.') )
 };

@@ -9,47 +9,31 @@ loadEnv()
 const app = express()
 
 app.use('/assets', express.static('assets'));
+app.use('/' , express.static('interface'));
 
 app.use( bodyParser.json() );
 
-app.get('/api' , (req,res) => {
-	exec( 'minizinc --output-mode json core/prog.mzn core/data.dzn' , ( err , stdout , stderr ) => {
-		if( err != null ) {
-			console.error( {err,stdout,stderr} );
-			return res.sendStatus(500);
+function MinizincAPI( mode ) {
+	return (
+		(req,res) => {
+			let query = req.body;
+			let now = `query/data_${+(new Date())}.dzn`;
+		
+			writeFileSync( now , query.data , {} )
+			exec( `minizinc --output-mode json core/prog_${mode}.mzn ${now}` , ( err , stdout , stderr ) => {
+				if( (err != null) || (stderr != '') ) {
+					console.error( {err,stdout,stderr} );
+					return res.sendStatus(500);
+				}
+				res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
+			})
 		}
-		res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
-	})
-})
+	)
+}
 
-app.post('/api/duo' , (req,res) => {
-	let query = req.body;
-	let now = `query/data_${+(new Date())}.dzn`;
 
-	writeFileSync( now , query.data , {} )
-	exec( `minizinc --output-mode json core/prog.mzn ${now}` , ( err , stdout , stderr ) => {
-		if( err != null ) {
-			console.error( {err,stdout,stderr} );
-			return res.sendStatus(500);
-		}
-		res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
-	})
-})
+app.post('/api/duo' , MinizincAPI('duo') );
+app.post('/api/trio' , MinizincAPI('trio') );
 
-app.post('/api/trio' , (req,res) => {
-	let query = req.body;
-	let now = `query/data_${+(new Date())}.dzn`;
-
-	writeFileSync( now , query.data , {} )
-	exec( `minizinc --output-mode json core/prog_trio.mzn ${now}` , ( err , stdout , stderr ) => {
-		if( err != null ) {
-			console.error( {err,stdout,stderr} );
-			return res.sendStatus(500);
-		}
-		res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
-	})
-})
-
-app.use('/' , express.static('interface'))
 
 app.listen( process.env.WEB_PORT , () => { console.log(`App ready : http://localhost:${process.env.WEB_PORT}`) } )
