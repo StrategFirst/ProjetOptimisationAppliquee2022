@@ -20,3 +20,8 @@ document.getElementById('remove').onclick = () => {
 	let rm = cible.lastElementChild;
 	if (rm) { cible.removeChild(rm) }
 };
+
+document.getElementById('multiple').onclick = (e) => {
+	if( e.target.nodeName.toLowerCase() == 'button' )
+	document.querySelector('#multiple input').click();
+}

@@ -1,8 +1,3 @@
-document.getElementById('multiple').onclick = (e) => {
-	if( e.target.nodeName.toLowerCase() == 'button' )
-	document.querySelector('#multiple input').click();
-}
-
 document.getElementById('submit').onclick = () => {
 	let listeDonnees = [...document.querySelector('#in tbody').children]
 		.map(tr => {
@@ -76,13 +71,13 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 				out.innerHTML = '';
 
 				let i = 1;
-				for(let soluce of liste.pair) {
+				for(let soluce of liste.duo) {
 					let tab = document.createElement('table');
 					let p = document.createElement('p');
 					p.innerHTML = `Solution n°${i++}`;
 					out.appendChild(p);
-					let pair = soluce.map( (a,b) => ([a-1,b]) );
-					let html = pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join``;
+					let duo = soluce.map( (a,b) => ([a-1,b]) );
+					let html = duo.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join``;
 					tab.innerHTML = html;
 					out.appendChild(tab);
 				}

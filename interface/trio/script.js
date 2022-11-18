@@ -27,11 +27,8 @@ document.getElementById('submit').onclick = () => {
 		names.push(Nom);
 	}
 
-	let constraints = [...document.querySelector('#constraints tbody').children]
-	.map(tr => {
-		let tab = [...tr.querySelectorAll('input')].map(input => input.checked);
-		return tab;
-	});
+	
+	let constraints = [... document.querySelectorAll('#constraints tbody input')].map( checkbox => ! checkbox.checked )
 
 	let fichier =
 `
@@ -57,7 +54,7 @@ villes = ${JSON.stringify(result.villes).replace(/"/g, '')};
 styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 `;
 
-	fetch('/api/trio', {
+	fetch(`/api/trio?allSolutions=${document.getElementById('allSolutions').checked}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -68,8 +65,25 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 	})
 	.then( res => { if (res.status != 200) { throw res; } else { return res; } } )
 	.then( res => res.json() )
-	.then( liste => liste.pair.map( (a,b,t) => ([a-1,b,t[a-1]]) ) )
-	.then( pair => pair.map( ([x,y,z]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td><td>${names[z]}</td> </tr>` ).join`` )
-	.then( html => document.getElementById('out').innerHTML = html )
+	.then( liste => {
+		if( liste.meta ) {
+			document.getElementById('out').innerHTML = `<tr><td> ${liste.meta} </td></tr>`;
+		} else {
+			let out = document.getElementById('out'); 
+			out.innerHTML = '';
+
+			let i = 1;
+			for(let soluce of liste.trio) {
+				let tab = document.createElement('table');
+				let p = document.createElement('p');
+				p.innerHTML = `Solution n°${i++}`;
+				out.appendChild(p);
+				let trio = soluce.map( (a,b,t) => ([a-1,b,t[a-1]-1]) );
+				let html = trio.map( ([x,y,z]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td><td>${names[z]}</td> </tr>` ).join``;
+				tab.innerHTML = html;
+				out.appendChild(tab);
+			}
+		} 
+	})
 	.catch( () => alert('Une erreur est survenu \n pensez à vérifier vos données.') )
 };

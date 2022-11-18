@@ -33,7 +33,7 @@ function MinizincAPI( mode ) {
 				{
 					let result = stdout.replace('==========','').split('----------');
 					result.pop();
-					res.send( result.map(JSON.parse).reduce( ( accumulateur , value ) => {accumulateur.pair.push(value.pair);return accumulateur;} , {"pair":[]} ) );
+					res.send( result.map(JSON.parse).reduce( ( accumulateur , value ) => {accumulateur[mode].push(value[mode]);return accumulateur;} , JSON.parse(`{"${mode}":[]}`) ) );
 				}
 			})
 		}

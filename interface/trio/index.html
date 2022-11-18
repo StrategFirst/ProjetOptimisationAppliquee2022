@@ -23,6 +23,7 @@
 						<button id="add" class="btn btn-success"> <i class="bi-plus-circle-fill"></i> </button>
 						<button id="remove" class="btn btn-danger"> <i class="bi-dash-circle-fill"></i> </button>
 						<button id="submit" class="btn btn-primary"> Analyser </button>
+						<button id="multiple" class="btn btn-secondary"> <input type="checkbox" id="allSolutions"/> Solutions multiples </button>
 					</div>
 
 					<h3> Contraintes </h3>
@@ -35,11 +36,11 @@
 						</thead>
 						<tbody>
 								<tr>
-									<td>Les deux musiciens doivent habiter la même ville</td>
+									<td>Les trois musiciens doivent habiter la même ville</td>
 									<td><input type="checkbox" checked id="dropConstraintCity"></td>
 								</tr>
 								<tr>
-									<td>Le nombre d’heures voulues doit être dans le créneau Min - Max souhaité par l’autre</td>
+									<td>Le nombre d’heures voulues doit être dans le créneau Min - Max souhaité par les autres</td>
 									<td><input type="checkbox" checked id="dropConstraintTime"></td>
 								</tr>
 								<tr>
@@ -47,7 +48,7 @@
 									<td><input type="checkbox" checked id="dropConstraintStyle"></td>
 								</tr>
 								<tr>
-									<td>Deux musiciens jouant du même instrument ne peuvent former un duo</td>
+									<td>Deux musiciens jouant du même instrument ne peuvent être dans le même trio</td>
 									<td><input type="checkbox" checked id="dropConstraintInstru"></td>
 								</tr>
 								<tr>
@@ -75,18 +76,19 @@
 							</tr>
 						</thead>
 						<tbody>
+
 							<tr>
 								<td><input value="Alex" type="text"> </td>
 								<td><input value="3" type="number"> </td>
 								<td><input value="2" type="number"> </td>
-								<td><input value="Guitare" type="text"> </td>
+								<td><input value="Basse" type="text"> </td>
 								<td><input value="Angers" type="text"> </td>
 								<td><input value="Rock,Metal,Jazz" type="text"> </td>
 								<td><input value="2" type="number"> </td>
 								<td><input value="4" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 								<td><input value="4" type="number"> </td>
-								<td><input value="2" type="number"> </td>
+								<td><input value="1" type="number"> </td>
 							</tr>
 							<tr>
 								<td><input value="Billie" type="text"> </td>
@@ -99,7 +101,7 @@
 								<td><input value="5" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 								<td><input value="2" type="number"> </td>
-								<td><input value="3" type="number"> </td>
+								<td><input value="1" type="number"> </td>
 							</tr>
 							<tr>
 								<td><input value="Chris" type="text"> </td>
@@ -109,7 +111,7 @@
 								<td><input value="Angers" type="text"> </td>
 								<td><input value="RnB,Rap,Classique" type="text"> </td>
 								<td><input value="1" type="number"> </td>
-								<td><input value="2" type="number"> </td>
+								<td><input value="3" type="number"> </td>
 								<td><input value="3" type="number"> </td>
 								<td><input value="5" type="number"> </td>
 								<td><input value="1" type="number"> </td>
@@ -138,7 +140,7 @@
 								<td><input value="6" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 								<td><input value="3" type="number"> </td>
-								<td><input value="2" type="number"> </td>
+								<td><input value="1" type="number"> </td>
 							</tr>
 							<tr>
 								<td><input value="Franck" type="text"> </td>
@@ -151,7 +153,7 @@
 								<td><input value="5" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 								<td><input value="3" type="number"> </td>
-								<td><input value="2" type="number"> </td>
+								<td><input value="1" type="number"> </td>
 							</tr>
 							<tr>
 								<td><input value="Gisèle" type="text"> </td>
@@ -211,12 +213,12 @@
 								<td><input value="2" type="number"> </td>
 								<td><input value="Basse" type="text"> </td>
 								<td><input value="Nantes" type="text"> </td>
-								<td><input value="Jazz,Rap,Funk,Rock" type="text"> </td>
+								<td><input value="Jazz,Rap,Funk,Rock,Electro" type="text"> </td>
 								<td><input value="3" type="number"> </td>
 								<td><input value="5" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 								<td><input value="3" type="number"> </td>
-								<td><input value="2" type="number"> </td>
+								<td><input value="1" type="number"> </td>
 							</tr>
 							<tr>
 								<td><input value="Lisa" type="text"> </td>
@@ -224,10 +226,49 @@
 								<td><input value="4" type="number"> </td>
 								<td><input value="Basse" type="text"> </td>
 								<td><input value="Angers" type="text"> </td>
-								<td><input value="Metal,Pop,Electro,Jazz" type="text"> </td>
-								<td><input value="3" type="number"> </td>
+								<td><input value="Metal,Pop,Electro,Jazz,Classique" type="text"> </td>
+								<td><input value="2" type="number"> </td>
 								<td><input value="6" type="number"> </td>
 								<td><input value="2" type="number"> </td>
+								<td><input value="5" type="number"> </td>
+								<td><input value="1" type="number"> </td>
+							</tr>
+							<tr>
+								<td><input value="Marc" type="text"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="2" type="number"> </td>
+								<td><input value="Guitare" type="text"> </td>
+								<td><input value="Nantes" type="text"> </td>
+								<td><input value="Jazz,Funk" type="text"> </td>
+								<td><input value="1" type="number"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="1" type="number"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="1" type="number"> </td>
+							</tr>
+							<tr>
+								<td><input value="Niels" type="text"> </td>
+								<td><input value="2" type="number"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="Basse" type="text"> </td>
+								<td><input value="Nantes" type="text"> </td>
+								<td><input value="Rap,Funk,Rock,Electro" type="text"> </td>
+								<td><input value="2" type="number"> </td>
+								<td><input value="5" type="number"> </td>
+								<td><input value="2" type="number"> </td>
+								<td><input value="4" type="number"> </td>
+								<td><input value="1" type="number"> </td>
+							</tr>
+							<tr>
+								<td><input value="Ophelie" type="text"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="Batterie" type="text"> </td>
+								<td><input value="Nantes" type="text"> </td>
+								<td><input value="Metal,Pop,Funk,Jazz,Classique" type="text"> </td>
+								<td><input value="3" type="number"> </td>
+								<td><input value="4" type="number"> </td>
+								<td><input value="3" type="number"> </td>
 								<td><input value="5" type="number"> </td>
 								<td><input value="1" type="number"> </td>
 							</tr>
@@ -235,6 +276,13 @@
 					</table>
 			
 					<h3> Sortie </h3>
-					<table id="out"></table>
+					<div id="out"></div>
+
+
+
+		<div>
+			<a href="/assets/dzn/data_trio.dzn" target="_blank" class="btn-get-started"> Téléchargement example DZN </a>
+		</div>
+
 	</body>
 </html>

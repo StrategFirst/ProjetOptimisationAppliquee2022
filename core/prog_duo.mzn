@@ -1,7 +1,7 @@
 
 % Types
 
-enum Instrument = { Guitare , Batterie , Piano , Basse , Violon };
+enum Instrument = { Guitare , Batterie , Piano , Basse , Violon, Triangle };
 enum Ville = { Angers , Nantes };
 enum Style = { Rock , Metal , Jazz , Pop , Classique , Punk , RnB , Rap , Electro , Funk };
 
@@ -30,7 +30,7 @@ array[1..nbPersonnes] of int: nbStylesMin;
 
 % Variables
 
-array[1..nbPersonnes] of var (1..nbPersonnes): pair;
+array[1..nbPersonnes] of var (1..nbPersonnes): duo;
 
 
 % Contraintes
@@ -39,7 +39,7 @@ array[1..nbPersonnes] of var (1..nbPersonnes): pair;
 constraint 
   forall( i in (1..nbPersonnes) )
   ( 
-    pair[ pair[ i ] ] = i 
+    duo[ duo[ i ] ] = i 
   );
 
 % Deux musiciens jouant du même instrument ne peuvent former un duo
@@ -47,7 +47,7 @@ constraint
   dropConstraintInstru 
   \/ 
   (
-    forall( i in (1..nbPersonnes) )( instrusments[ i ] != instrusments[ pair[ i ] ] )
+    forall( i in (1..nbPersonnes) )( instrusments[ i ] != instrusments[ duo[ i ] ] )
   );
 
 % Les deux musiciens doivent habiter la même ville
@@ -55,7 +55,7 @@ constraint
   dropConstraintCity
   \/
   (
-    forall( i in (1..nbPersonnes) )( villes[ i ] == villes[ pair[ i ] ] )
+    forall( i in (1..nbPersonnes) )( villes[ i ] == villes[ duo[ i ] ] )
   );
 
 % Le nombre d’heures voulues doit être dans le créneau Min - Max souhaité par l’autre
@@ -64,9 +64,9 @@ constraint
   \/
   (
     forall( i in (1..nbPersonnes) )(
-      ( nbHeuresHebdo[ i ] >= nbHeuresMin[ pair[ i ] ] )
+      ( nbHeuresHebdo[ i ] >= nbHeuresMin[ duo[ i ] ] )
       /\
-      ( nbHeuresHebdo[ i ] <= nbHeuresMax[ pair[ i ] ] )
+      ( nbHeuresHebdo[ i ] <= nbHeuresMax[ duo[ i ] ] )
     )
   );
 
@@ -76,9 +76,9 @@ constraint
   \/
   (
     forall( i in (1..nbPersonnes) )(
-      ( niveaux[ i ] >= niveauMin[ pair[ i ] ] )
+      ( niveaux[ i ] >= niveauMin[ duo[ i ] ] )
       /\
-      ( niveaux[ i ] <= niveauMax[ pair[ i ] ] )
+      ( niveaux[ i ] <= niveauMax[ duo[ i ] ] )
     )
   ); 
 
@@ -89,7 +89,7 @@ constraint
   (
     forall( i in (1..nbPersonnes) )
       ( 
-        card( styles[i] intersect styles[ pair[ i ] ] ) >= nbStylesMin[i] 
+        card( styles[i] intersect styles[ duo[ i ] ] ) >= nbStylesMin[i] 
       )
   );
 
