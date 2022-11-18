@@ -89,7 +89,7 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 		})
 	})
 	.then( res => res.json() )
-	.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
-	.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
+	.then( liste => liste.pair.map( (a,b,t) => ([a-1,b,t[a-1]]) ) )
+	.then( pair => pair.map( ([x,y,z]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td><td>${names[z]}</td> </tr>` ).join`` )
 	.then( html => document.getElementById('out').innerHTML = html )
 };

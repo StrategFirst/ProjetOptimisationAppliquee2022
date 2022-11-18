@@ -9,6 +9,12 @@ enum Style = { Rock , Metal , Jazz , Pop , Classique , Punk , RnB , Rap , Electr
 
  % Constantes
 
+bool: dropConstraintCity;
+bool: dropConstraintTime;
+bool: dropConstraintStyle;
+bool: dropConstraintInstru;
+bool: dropConstraintLevel;
+
 int: nbPersonnes;
 
 array[1..nbPersonnes] of int: nbHeuresHebdo; 
