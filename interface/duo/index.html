@@ -4,22 +4,28 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title> “We are m(usicians) and we play rock n’ roll !” </title>
-		<link rel="stylesheet" href="/global.css" type="text/css" />
 		<link rel="stylesheet" href="style.css" type="text/css" />
 		<script src="script.js" defer></script>
+
+
+		<!-- CSS -->
+		<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+		<link href="/assets/css/style.css" rel="stylesheet">
 	</head>
 
-	<body>
+	<body class="hero">
 		<h1> “We are m(usicians) and we play rock n’ roll !” </h1>
 		<h2> Duo </h2>
 
+		<h3> Entrée </h3>
+		
 		<div>
-			<button id="add"> + </button>
-			<button id="remove"> x </button>
-			<button id="submit"> Analyser </button>
+			<button id="add" class="btn btn-success"> <i class="bi-plus-circle-fill"></i> </button>
+			<button id="remove" class="btn btn-danger"> <i class="bi-dash-circle-fill"></i> </button>
+			<button id="submit" class="btn btn-primary"> Analyser </button>
 		</div>
 
-		<h3> Entrée </h3>
 		<table id="in">
 			<thead>
 				<tr>
