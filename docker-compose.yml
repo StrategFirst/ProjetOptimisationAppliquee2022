@@ -4,4 +4,6 @@ services:
     build: .
     ports: 
       - "${WEB_PORT}:${WEB_PORT}"
+    volumes:
+      - .:/var/project
     
