@@ -20,12 +20,21 @@ function MinizincAPI( mode ) {
 			let now = `query/data_${+(new Date())}.dzn`;
 		
 			writeFileSync( now , query.data , {} )
-			exec( `minizinc --output-mode json core/prog_${mode}.mzn ${now}` , ( err , stdout , stderr ) => {
+			exec( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}.mzn ${now}` , ( err , stdout , stderr ) => {
+				console.log(stdout);
+				console.log('----------------');
+				if( stdout.match(/=====UNSATISFIABLE=====/) ) {
+					res.send( {meta:'UNSATISFIABLE'} );
+				} else
 				if( (err != null) || (stderr != '') ) {
 					console.error( {err,stdout,stderr} );
 					return res.sendStatus(500);
+				} else
+				{
+					let result = stdout.replace('==========','').split('----------');
+					result.pop();
+					res.send( result.map(JSON.parse).reduce( ( accumulateur , value ) => {accumulateur.pair.push(value.pair);return accumulateur;} , {"pair":[]} ) );
 				}
-				res.send( JSON.parse( stdout.replace(/-(-+)/g,'') ) );
 			})
 		}
 	)

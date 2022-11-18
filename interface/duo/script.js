@@ -1,3 +1,8 @@
+document.getElementById('multiple').onclick = (e) => {
+	if( e.target.nodeName.toLowerCase() == 'button' )
+	document.querySelector('#multiple input').click();
+}
+
 document.getElementById('submit').onclick = () => {
 	let listeDonnees = [...document.querySelector('#in tbody').children]
 		.map(tr => {
@@ -26,7 +31,7 @@ document.getElementById('submit').onclick = () => {
 		names.push(Nom);
 	}
 
-	let constraints = [... document.querySelectorAll('#constraints tbody input')].map( checkbox => checkbox.checked )
+	let constraints = [... document.querySelectorAll('#constraints tbody input')].map( checkbox => ! checkbox.checked )
 
 	let fichier =
 `
@@ -52,7 +57,7 @@ villes = ${JSON.stringify(result.villes).replace(/"/g, '')};
 styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 `;
 
-	fetch('/api/duo', {
+	fetch(`/api/duo?allSolutions=${document.getElementById('allSolutions').checked}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -63,8 +68,25 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 	})
 		.then( res => { if (res.status != 200) { throw res; } else { return res; } } )
 		.then( res => res.json() )
-		.then( liste => liste.pair.map( (a,b) => ([a-1,b]) ) )
-		.then( pair => pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join`` )
-		.then( html => document.getElementById('out').innerHTML = html )
+		.then( liste => {
+			if( liste.meta ) {
+				document.getElementById('out').innerHTML = `<tr><td> ${liste.meta} </td></tr>`;
+			} else {
+				let out = document.getElementById('out'); 
+				out.innerHTML = '';
+
+				let i = 1;
+				for(let soluce of liste.pair) {
+					let tab = document.createElement('table');
+					let p = document.createElement('p');
+					p.innerHTML = `Solution n°${i++}`;
+					out.appendChild(p);
+					let pair = soluce.map( (a,b) => ([a-1,b]) );
+					let html = pair.map( ([x,y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>` ).join``;
+					tab.innerHTML = html;
+					out.appendChild(tab);
+				}
+			}
+ 		})
 		.catch( () => alert('Une erreur est survenu \n pensez à vérifier vos données.') )
 }
