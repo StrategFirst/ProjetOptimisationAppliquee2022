@@ -8,6 +8,8 @@ loadEnv()
 
 const app = express()
 
+app.use('/assets', express.static('assets'));
+
 app.use( bodyParser.json() );
 
 app.get('/api' , (req,res) => {
