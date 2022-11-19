@@ -52,6 +52,18 @@ villes = ${JSON.stringify(result.villes).replace(/"/g, '')};
 styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 `;
 
+	exec(fichier,names);
+}
+
+document.getElementById('submitWithFile').onclick = () => {
+	document
+		.getElementById('import-DZN')
+		.files[0]
+		.text()
+		.then( exec , null )
+}
+
+function exec(fichier,names) {
 	fetch(`/api/duo?allSolutions=${document.getElementById('allSolutions').checked}`, {
 		method: 'POST',
 		headers: {
@@ -70,6 +82,10 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 				let out = document.getElementById('out'); 
 				out.innerHTML = '';
 
+				if(names == null) {
+					names = liste.duo[0].map((_,i)=>i+1)
+				}
+
 				let i = 1;
 				for(let soluce of liste.duo) {
 					let tab = document.createElement('table');
@@ -83,5 +99,8 @@ styles = [${result.styles.map(S => `{${S.join`,`}}`).join`,`}];
 				}
 			}
  		})
-		.catch( () => alert('Une erreur est survenu \n pensez à vérifier vos données.') )
+		.catch( (err) => {
+			console.error(err);
+			alert('Une erreur est survenu \n pensez à vérifier vos données.');
+ 		})
 }
