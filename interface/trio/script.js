@@ -37,6 +37,19 @@ function exec(fichier, names) {
 					p.innerHTML = `Solution n°${i++}`;
 					out.appendChild(p);
 					let trio = soluce.map((a, b, t) => ([a - 1, b, t[a - 1] - 1]));
+					// Remove dupe but shifted output:
+					let newTrio = [];
+					let filtre = [];
+					for(let T of trio) {
+						if( ! filtre[ T[0] ] ) {
+							filtre[ T[0] ] = true;
+							filtre[ T[1] ] = true;
+							filtre[ T[2] ] = true;
+							newTrio.push( T );
+						}
+					}
+					trio = newTrio;
+					//
 					let html = trio.map(([x, y, z]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td><td>${names[z]}</td> </tr>`).join``;
 					tab.innerHTML = html;
 					out.appendChild(tab);

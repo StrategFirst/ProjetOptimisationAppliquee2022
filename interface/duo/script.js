@@ -36,6 +36,18 @@ function exec(fichier, names) {
 					p.innerHTML = `Solution n°${i++}`;
 					out.appendChild(p);
 					let duo = soluce.map((a, b) => ([a - 1, b]));
+					// Remove dupe but shifted output:
+					let newDuo = [];
+					let filtre = [];
+					for(let D of duo) {
+						if( ! filtre[ D[0] ] ) {
+							filtre[ D[0] ] = true;
+							filtre[ D[1] ] = true;
+							newDuo.push( D );
+						}
+					}
+					duo = newDuo;
+					//
 					let html = duo.map(([x, y]) => `<tr> <td>${names[x]}</td><td>${names[y]}</td> </tr>`).join``;
 					tab.innerHTML = html;
 					out.appendChild(tab);
