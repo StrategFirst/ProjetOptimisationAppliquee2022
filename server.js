@@ -21,8 +21,6 @@ function MinizincAPI( mode ) {
 		
 			writeFileSync( now , query.data , {} )
 			exec( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}.mzn ${now}` , ( err , stdout , stderr ) => {
-				console.log(stdout);
-				console.log('----------------');
 				if( stdout.match(/=====UNSATISFIABLE=====/) ) {
 					res.send( {meta:'UNSATISFIABLE'} );
 				} else

@@ -2430,3 +2430,7 @@ section {
   	margin:auto;
   	margin-bottom: 1rem;
 }
+
+input[type="number"] {
+	width: 5rem  ;
+}
