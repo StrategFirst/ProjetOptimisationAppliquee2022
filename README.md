@@ -42,3 +42,24 @@ https://docs.docker.com/compose/install/
     ```bash
 	docker-compose up -d --build
 	```
+
+### Informations
+
+#### Solutions symétrique
+1. Pour les duo le modèle ne genère pas de solutions symétriques.
+
+2. Pour les trio une symétrie éxiste, mais une contrainte suplémentaire 
+permet de briser la symétrie : 
+```mzn
+constraint forall( i in (1..nbPersonnes) )
+	(	
+		(
+			(if i > trio[i] then 1 else 0 endif) +
+			(if trio[i] > trio[trio[i]] then 1 else 0 endif) +
+			(if trio[trio[i]] > trio[trio[trio[i]]] then 1 else 0 endif)
+		) == 2
+	);
+```
+
+### Mode avancé
+Il est possible de soumettre un fichier dzn directement en bas de l'interface.
