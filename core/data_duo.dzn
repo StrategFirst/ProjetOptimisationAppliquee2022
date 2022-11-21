@@ -58,4 +58,6 @@ styles = [
 	{Jazz,Electro},
 	{Jazz,Rap,Funk,Rock},
 	{Metal,Pop,Electro,Jazz}
-]
+];
+
+versionNiveau = true;

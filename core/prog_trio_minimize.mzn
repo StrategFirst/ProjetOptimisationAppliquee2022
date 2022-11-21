@@ -7,6 +7,8 @@ enum Style = { Rock , Metal , Jazz , Pop , Classique , Punk , RnB , Rap , Electr
 
  % Constantes
 
+bool: versionNiveau;
+
 bool: dropConstraintCity;
 bool: dropConstraintTime;
 bool: dropConstraintStyle;
@@ -120,8 +122,14 @@ constraint forall( i in (1..nbPersonnes) )
 	);
 
 %definition de la qualite :
-%% Somme des différences de niveau au sein d'un trio
-constraint qualite = sum( i in (1..nbPersonnes) )( abs( niveaux[i] - niveaux[ trio[i] ] ) );
+constraint qualite = 
+	if versionNiveau then
+		%% Somme des différences de niveau au sein d'un trio
+		sum( i in (1..nbPersonnes) )( abs( niveaux[i] - niveaux[ trio[i] ] ) )
+	else 
+		%% Somme des différences de nombres d'heures hebdo au sein d'un trio
+		sum( i in (1..nbPersonnes) )( abs( nbHeuresHebdo[i] - nbHeuresHebdo[ trio[i] ] ) )
+	endif;
 
 
  % Solutions

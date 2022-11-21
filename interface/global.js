@@ -91,6 +91,8 @@ nbStylesMin = ${_1D_Array_ToDZN(result.nbStylesMin)};
 instrusments = ${_1D_Array_ToDZN(result.instrusments)};
 villes = ${_1D_Array_ToDZN(result.villes)};
 styles = ${_2D_Array_ToDZN(result.styles)};
+
+versionNiveau = ${document.getElementById('qualite1').checked};
 `;
 
 	return [fichier, names];

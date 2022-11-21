@@ -35,4 +35,6 @@ nbPersonnes = 12;
 niveauMax=[5,5,5,5,5,5,5,5,5,5,5,5];
 nbStylesMin = [1,1,1,1,1,1,1,1,1,1,1,1];
 
+versionNiveau = true;
+
 

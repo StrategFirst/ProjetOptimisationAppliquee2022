@@ -20,8 +20,11 @@ function MinizincAPI( mode ) {
 			let now = `query/data_${+(new Date())}.dzn`;
 		
 			writeFileSync( now , query.data , {} );
-			console.log( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}${ (req.query.minimize == 'true') ? '_minimize' : '' }.mzn ${now}` );
 			exec( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}${ (req.query.minimize == 'true') ? '_minimize' : '' }.mzn ${now}` , ( err , stdout , stderr ) => {
+				if( stderr.match(/ERR_CHILD_PROCESS_STDIO_MAXBUFFER/) )
+				{
+					res.send( {meta: 'TOO MANY OUTPUT'} );
+				} else
 				if( stdout.match(/=====UNSATISFIABLE=====/) ) {
 					res.send( {meta:'UNSATISFIABLE'} );
 				} else
