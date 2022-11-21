@@ -19,8 +19,9 @@ function MinizincAPI( mode ) {
 			let query = req.body;
 			let now = `query/data_${+(new Date())}.dzn`;
 		
-			writeFileSync( now , query.data , {} )
-			exec( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}.mzn ${now}` , ( err , stdout , stderr ) => {
+			writeFileSync( now , query.data , {} );
+			console.log( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}${ (req.query.minimize == 'true') ? '_minimize' : '' }.mzn ${now}` );
+			exec( `minizinc ${ (req.query.allSolutions == 'true') ? '--all-solutions ' : '' } --output-mode json core/prog_${mode}${ (req.query.minimize == 'true') ? '_minimize' : '' }.mzn ${now}` , ( err , stdout , stderr ) => {
 				if( stdout.match(/=====UNSATISFIABLE=====/) ) {
 					res.send( {meta:'UNSATISFIABLE'} );
 				} else
@@ -31,7 +32,14 @@ function MinizincAPI( mode ) {
 				{
 					let result = stdout.replace('==========','').split('----------');
 					result.pop();
-					res.send( result.map(JSON.parse).reduce( ( accumulateur , value ) => {accumulateur[mode].push(value[mode]);return accumulateur;} , JSON.parse(`{"${mode}":[]}`) ) );
+					res.send( 
+						result.map(JSON.parse)
+						.reduce( ( accumulateur , value ) => {
+							accumulateur[mode].push(value[mode]);
+							accumulateur.qualite.push(value.qualite);
+							return accumulateur;
+						} , JSON.parse(`{"${mode}":[],"qualite":[]}`) )
+					);
 				}
 			})
 		}

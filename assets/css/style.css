@@ -2434,3 +2434,8 @@ section {
 input[type="number"] {
 	width: 5rem  ;
 }
+
+:is(.btn-check:checked + .btn, :not(.btn-check) + .btn:active, .btn:first-child:active, .btn.active)::after {
+	content: '✔';
+	color: lime;
+}

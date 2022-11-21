@@ -23,12 +23,6 @@ document.getElementById('remove').onclick = () => {
 	if (rm) { cible.removeChild(rm) }
 };
 
-// Special for the multiple solutions button, to transmit the click event like the for in label does with button for style purpose
-document.getElementById('multiple').onclick = (e) => {
-	if (e.target.nodeName.toLowerCase() == 'button')
-		document.querySelector('#multiple input').click();
-};
-
 // Sending the request with the file method
 document.getElementById('submitWithFile').onclick = () => {
 	document

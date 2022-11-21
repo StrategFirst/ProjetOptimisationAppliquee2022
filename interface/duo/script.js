@@ -3,8 +3,28 @@ document.getElementById('submit').onclick = () => exec(... (DOM_2_DZN()));
 // Ask the server to process the data
 function exec(fichier, names) {
 
+	let allSolutions = false;
+	let minimize = false;
+	const MODE = [... document.querySelectorAll('#mode input')].map( checkbox => checkbox.checked );
+	switch( true ) {
+		case MODE[0]: 
+		allSolutions = false;
+		minimize = false;
+		break;
+		
+		case MODE[1]:
+		allSolutions = true;
+		minimize = false;
+		break;
+
+		case MODE[2]:
+		allSolutions = false;
+		minimize = true;
+		break;
+	}
+
 	// Send the request
-	fetch(`/api/duo?allSolutions=${document.getElementById('allSolutions').checked}`, {
+	fetch(`/api/duo?allSolutions=${allSolutions}&minimize=${minimize}`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -29,12 +49,15 @@ function exec(fichier, names) {
 					names = liste.duo[0].map((_, i) => i + 1)
 				}
 
-				let i = 1;
-				for (let soluce of liste.duo) {
+				for (let i in liste.duo) {
+					let soluce = liste.duo[i];
 					let tab = document.createElement('table');
 					let p = document.createElement('p');
-					p.innerHTML = `Solution n°${i++}`;
+					p.innerHTML = `Solution n°${parseInt(i)+1}`;
 					out.appendChild(p);
+					let q = document.createElement('span');
+					q.innerHTML = `Qualité : ${liste.qualite[i]}`;
+					out.appendChild(q);
 					let duo = soluce.map((a, b) => ([a - 1, b]));
 					// Remove dupe but shifted output:
 					let newDuo = [];

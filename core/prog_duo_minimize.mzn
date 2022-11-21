@@ -101,5 +101,5 @@ constraint qualite = sum( i in (1..nbPersonnes) )( abs( niveaux[i] - niveaux[ du
 
 
 % Solution
-solve satisfy;
+solve minimize qualite;
 
