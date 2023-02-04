@@ -63,3 +63,7 @@ constraint forall( i in (1..nbPersonnes) )
 
 ### Mode avancé
 Il est possible de soumettre un fichier dzn directement en bas de l'interface.
+
+
+### Modes de qualités
+La qualité peut être varié 
