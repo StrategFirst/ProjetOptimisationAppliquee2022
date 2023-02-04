@@ -82,6 +82,7 @@ function exec(fichier, names) {
 				}
 			}
 		})
+		.then(scrollToOutput)
 		.catch((err) => {
 			console.error(err);
 			alert('Une erreur est survenu \n pensez à vérifier vos données.');

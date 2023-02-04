@@ -35,6 +35,7 @@ document.getElementById('submitWithFile').onclick = () => {
 // Usefull format conversion function 
 const _1D_Array_ToDZN = (arr) => JSON.stringify(arr).replace(/"/g, '');
 const _2D_Array_ToDZN = (arr) => `[${arr.map(S => `{${S.join`,`}}`).join`,`}]`;
+const scrollToOutput = () => document.getElementById('out').scrollIntoView({behavior:'smooth'});
 
 // Create DZN File from the dom
 function DOM_2_DZN() {
