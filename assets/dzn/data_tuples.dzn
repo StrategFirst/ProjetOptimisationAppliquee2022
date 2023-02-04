@@ -1,0 +1,40 @@
+dropConstraintCity = true;
+dropConstraintTime = true;
+dropConstraintStyle = true;
+dropConstraintInstru = true;
+dropConstraintLevel = true;
+
+nbHeuresHebdo=[3,3,3,5,5,5,4,4,4,2,2,2];
+
+niveaux=[2,2,2,5,5,5,4,4,4,2,3,2];
+
+instrusments=  [Basse,Batterie,Guitare,Basse,Batterie,Guitare,Basse,Batterie,Guitare,Basse,Batterie,Guitare];
+
+villes=[Angers,Angers,Angers,Nantes,Nantes,Nantes,Angers,Angers,Angers,Nantes,Nantes,Nantes];
+
+styles=[{Rock,Classique},
+{Rock,Classique},
+{Rock,Classique},
+{Pop,Jazz},
+{Pop,Jazz},
+{Pop,Jazz},
+{Classique,Rock},
+{Classique,Rock},
+{Classique,Rock},
+{Jazz,Pop},
+{Jazz,Pop},
+{Jazz,Pop}];
+
+nbHeuresMin=[1,1,1,1,1,1,1,1,1,1,1,1];
+
+nbHeuresMax=[6,6,6,6,6,6,6,6,6,6,6,6];
+
+niveauMin=[1,1,1,1,1,1,1,1,1,1,1,1];
+nbPersonnes = 12;
+
+niveauMax=[5,5,5,5,5,5,5,5,5,5,5,5];
+nbStylesMin = [1,1,1,1,1,1,1,1,1,1,1,1];
+
+versionNiveau = true;
+
+

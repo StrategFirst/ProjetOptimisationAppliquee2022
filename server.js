@@ -52,6 +52,7 @@ function MinizincAPI( mode ) {
 
 app.post('/api/duo' , MinizincAPI('duo') );
 app.post('/api/trio' , MinizincAPI('trio') );
+app.post('/api/groupes' , MinizincAPI('tuples') );
 
 
 app.listen( process.env.WEB_PORT , () => { console.log(`App ready : http://localhost:${process.env.WEB_PORT}`) } )
