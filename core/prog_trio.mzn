@@ -97,19 +97,9 @@ constraint
 	(
 		forall( i in (1..nbPersonnes) )
 		( 
-			card( styles[i] intersect styles[ trio[ i ] ] ) >= nbStylesMin[i] 
+			card( ( styles[i] intersect styles[ trio[ i ] ] ) intersect styles[ trio[trio[ i ] ]] ) >= nbStylesMin[i] 
 		)
 	);
-constraint 
-	dropConstraintStyle
-	\/
-	(	
-		forall( i in (1..nbPersonnes) )
-		( 
-			card( styles[i] intersect styles[ trio[trio[ i ] ]] ) >= nbStylesMin[i] 
-		)
-	);
-
 
 %anti symétrie
 constraint forall( i in (1..nbPersonnes) )
